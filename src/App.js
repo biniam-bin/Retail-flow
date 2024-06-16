@@ -9,10 +9,10 @@ function App() {
   return (
     <Flex height="100vh">
       <Sidebar />
-      <Flex flexDir='column' height="100vh" bg="#eee" width="100%">
+      <Flex flexDir='column' height="" bg="#eee" width="100%">
         <Header />
 
-        <Flex p="1.5rem">
+        <Flex p="1.5rem" overflowY="auto">
           <Routes>
             <Route path="/dashboard" element={<Flex>home</Flex>} />
             <Route path="/brands" element={<Brands/>} />

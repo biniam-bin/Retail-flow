@@ -20,8 +20,9 @@ function Sidebar() {
     { text: "Report", icon: <GiNotebook />, url: "/report" },
   ]
   return (
-    <Flex width="20%" align="center" flexDir="column" color="#eee" bg="rgba(46,55,74,.82)">
-      <Heading my="2rem">Retail Flow</Heading>
+    <Flex height="100%" width="20%" align="center" flexDir="column" color="#eee" bg="rgba(46,55,74,.82)">
+      
+      <img src="/logo3.png"></img>
       <Spacer />
       <Flex flexDir="column" width="100%">
         {links.map((link) => {
