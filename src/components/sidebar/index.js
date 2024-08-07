@@ -12,17 +12,18 @@ import { GiNotebook } from "react-icons/gi";
 
 function Sidebar() {
   const links = [
-    { text: "Dashboard", icon: <AiFillDashboard />, url: "/dashboard" },
-    { text: "Brands", icon: <IoMdPricetags />, url: "/brands" },
-    { text: "Categories", icon: <FaLayerGroup />, url: "/categories" },
-    { text: "Products", icon: <BsBoxFill />, url: "/products" },
-    { text: "Orders", icon: <MdOutlineAttachMoney />, url: "/orders" },
-    { text: "Report", icon: <GiNotebook />, url: "/report" },
+    { text: "Dashboard", icon: <AiFillDashboard />, url: "/app/dashboard" },
+    { text: "Brands", icon: <IoMdPricetags />, url: "/app/brands" },
+    { text: "Categories", icon: <FaLayerGroup />, url: "/app/categories" },
+    { text: "Products", icon: <BsBoxFill />, url: "/app/products" },
+    { text: "Orders", icon: <MdOutlineAttachMoney />, url: "/app/orders" },
+    { text: "Report", icon: <GiNotebook />, url: "/app/report" },
   ]
   return (
     <Flex height="100%" width="20%" align="center" flexDir="column" color="#eee" bg="rgba(46,55,74,.82)">
-      
+      <Link href='/'>
       <img src="/logo3.png"></img>
+      </Link>
       <Spacer />
       <Flex flexDir="column" width="100%">
         {links.map((link) => {

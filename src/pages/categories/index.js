@@ -132,7 +132,8 @@ function AddCategory({ onAddClose, isAddOpen }) {
                 <ModalBody>
                     <FormControl isRequired>
                         <FormLabel>Category name</FormLabel>
-                        <Input placeholder='First name' />
+                        
+                        <Input placeholder='Category name' />
                     </FormControl>
                     <FormControl my="0.8rem">
                         <FormLabel>Status</FormLabel>

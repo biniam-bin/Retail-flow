@@ -12,9 +12,9 @@ function Dashboard() {
         <Flex flexDir="column" width="100%">
             <Flex width="100%">
                 <Card title="Total Products" amount={118} increase={false} percent={3.8} />
-                <Card title="Total Transactions" amount={118} increase={true} percent={14.2} />
-                <Card title="Total Profit" amount={118} increase={false} percent={1.4} />
-                <Card title="Total Brands" amount={118} increase={true} percent={6.5} />
+                <Card title="Total Transactions" amount={24000} increase={true} percent={14.2} />
+                <Card title="Total Profit" amount={16800} increase={false} percent={1.4} />
+                <Card title="Total Brands" amount={11} increase={true} percent={6.5} />
 
             </Flex>
             <Flex mt="2rem">
