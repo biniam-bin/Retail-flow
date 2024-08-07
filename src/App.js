@@ -4,9 +4,13 @@ import Sidebar from "./components/sidebar"
 import Header from './components/header';
 import { Routes, Route } from "react-router-dom";
 import Brands from './pages/brands';
+import Categories from './pages/categories';
+import Producs from './pages/products';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
+
     <Flex height="100vh">
       <Sidebar />
       <Flex flexDir='column' height="" bg="#eee" width="100%">
@@ -14,16 +18,17 @@ function App() {
 
         <Flex p="1.5rem" overflowY="auto">
           <Routes>
-            <Route path="/dashboard" element={<Flex>home</Flex>} />
-            <Route path="/brands" element={<Brands/>} />
-            <Route path="/categories" element={<Flex>cat</Flex>} />
-            <Route path="/products" element={<Flex>product</Flex>} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/brands" element={<Brands />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/products" element={<Producs />} />
             <Route path="/orders" element={<Flex>order</Flex>} />
             <Route path="/report" element={<Flex>report</Flex>} />
           </Routes>
         </Flex>
       </Flex>
     </Flex>
+
   );
 }
 
