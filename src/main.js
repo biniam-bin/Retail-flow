@@ -7,6 +7,7 @@ import Brands from './pages/brands';
 import Categories from './pages/categories';
 import Producs from './pages/products';
 import Dashboard from './pages/dashboard';
+import Orders from './pages/orders';
 
 function Main() {
   return (
@@ -22,8 +23,9 @@ function Main() {
             <Route path="/brands" element={<Brands />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/products" element={<Producs />} />
-            <Route path="/orders" element={<Flex>order</Flex>} />
+            <Route path="/orders" element={<Orders/>} />
             <Route path="/report" element={<Flex>report</Flex>} />
+            <Route path="/setting" element={<Flex>setting</Flex>} />
           </Routes>
         </Flex>
       </Flex>

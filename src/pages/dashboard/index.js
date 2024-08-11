@@ -4,6 +4,10 @@ import { FaBoxOpen } from "react-icons/fa";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { Line, Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { IoMdPricetags } from "react-icons/io";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+
 
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -11,10 +15,10 @@ function Dashboard() {
     return (
         <Flex flexDir="column" width="100%">
             <Flex width="100%">
-                <Card title="Total Products" amount={118} increase={false} percent={3.8} />
-                <Card title="Total Transactions" amount={24000} increase={true} percent={14.2} />
-                <Card title="Total Profit" amount={16800} increase={false} percent={1.4} />
-                <Card title="Total Brands" amount={11} increase={true} percent={6.5} />
+                <Card icon={<FaBoxOpen/>} title="Total Products" amount={118} increase={false} percent={3.8} />
+                <Card icon={<FaMoneyBillTransfer/>} title="Total Transactions" amount={24000} increase={true} percent={14.2} />
+                <Card icon={<MdOutlineAttachMoney/>} title="Total Profit" amount={16800} increase={false} percent={1.4} />
+                <Card icon={<IoMdPricetags/>} title="Total Brands" amount={11} increase={true} percent={6.5} />
 
             </Flex>
             <Flex mt="2rem">
@@ -29,12 +33,13 @@ function Dashboard() {
     )
 }
 
-function Card({ title, amount, increase, percent }) {
+function Card({ icon, title, amount, increase, percent }) {
     return (
         <Box bg="#fff" boxShadow="rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" p="0.8rem" mx="1rem" borderRadius="5px" width="100%">
             <Flex flexDir="column">
                 <Flex alignItems="center">
-                    <FaBoxOpen color="tomato" />
+                    {/* <FaBoxOpen color="tomato" /> */}
+                    {icon}
                     <Text ml="1rem" color="gray">{title}</Text>
                 </Flex>
                 <Flex mt="1rem" alignItems="center">
@@ -136,9 +141,9 @@ const LineGraph = () => {
 const DoughnutGraph = () => {
     const data = {
         labels: [
-            'Shirt',
-            'Dress',
-            'Hat'
+            'Electronics',
+            'Textiles',
+            'Furnitures'
         ],
         datasets: [{
             label: 'Quantity',

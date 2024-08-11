@@ -37,7 +37,7 @@ import {
 
 import { FaPen, FaTrashAlt } from "react-icons/fa";
 
-function Products() {
+function Orders() {
   const {
     isOpen: isEditOpen,
     onOpen: onEditOpen,
@@ -58,7 +58,7 @@ function Products() {
       <Flex alignItems="end">
         <Heading size="lg">Manage</Heading>
         <Text mx="0.5rem" color="gray">
-          Products
+          Orders
         </Text>
       </Flex>
       <Flex>
@@ -72,7 +72,7 @@ function Products() {
           p="0.35rem 0.8rem"
         >
           <Text fontSize="sm" size="xl">
-            Add Product
+            Add Order
           </Text>
         </Box>
       </Flex>
@@ -84,7 +84,7 @@ function Products() {
         boxShadow="rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;"
         bg="#fff"
       >
-        <Text fontSize="lg">Manage Products</Text>
+        <Text fontSize="lg">Manage Orders</Text>
         <Flex alignItems="center" mt="2rem">
           <Text>Show</Text>
           <NumberInput
@@ -106,7 +106,7 @@ function Products() {
           <Spacer />
           <Text>Search: </Text>
           <Input
-            placeholder="search product"
+            placeholder="search order"
             mx="0.5rem"
             size="sm"
             width="auto"
@@ -131,27 +131,22 @@ function Products() {
               </TableCaption>
               <Thead>
                 <Tr>
-                  <Th>Product Name</Th>
-                  <Th>Tag</Th>
-                  <Th>Brand</Th>
-                  <Th>Category</Th>
-                  <Th>Price</Th>
-                  <Th>Qyt</Th>
-                  <Th>Status</Th>
+                  <Th>Customer</Th>
+                  <Th>Product</Th>
+                  <Th>Quantity</Th>
+                  <Th>Amount</Th>
                   <Th>Action</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
+                  <Td>Biniam</Td>
                   <Td>Nike 03</Td>
-                  <Td>#0d53</Td>
-                  <Td>Nike</Td>
-                  <Td>Textile</Td>
-                  <Td>1500</Td>
-                  <Td>6</Td>
+                  <Td>x1</Td>
+                  <Td>500</Td>
                   <Td>
                     <Flex>
-                      <Productstatus status={true} />
+                      <OrderStatus status={true} />
                     </Flex>
                   </Td>
                   <Td>
@@ -190,17 +185,14 @@ function Products() {
       </Flex>
 
       <Flex m={200}></Flex>
-      <EditProduct isEditOpen={isEditOpen} onEditClose={onEditClose} />
-      <AddProduct isAddOpen={isAddOpen} onAddClose={onAddClose} />
-      <DeleteProduct
-        isDeleteOpen={isDeleteOpen}
-        onDeleteClose={onDeleteClose}
-      />
+      <EditOrder isEditOpen={isEditOpen} onEditClose={onEditClose} />
+      <AddOrder isAddOpen={isAddOpen} onAddClose={onAddClose} />
+      <DeleteOrder isDeleteOpen={isDeleteOpen} onDeleteClose={onDeleteClose} />
     </Flex>
   );
 }
 
-function Productstatus({ status }) {
+function OrderStatus({ status }) {
   return (
     <Flex
       bg={`${status ? "#198754" : "#ffc107"}`}
@@ -216,34 +208,59 @@ function Productstatus({ status }) {
   );
 }
 
-function AddProduct({ onAddClose, isAddOpen }) {
+function AddOrder({ onAddClose, isAddOpen }) {
   return (
     <Modal isOpen={isAddOpen} onClose={onAddClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Add Product</ModalHeader>
+        <ModalHeader>Add Order</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl isRequired>
-            <FormLabel>Product name</FormLabel>
-            <Input placeholder="Product name" />
+            <FormLabel>Customer Name</FormLabel>
+            <Input placeholder="Customer name" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel>Customer Phone</FormLabel>
+            <Input type="tel" placeholder="Customer phone" />
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Brand</FormLabel>
-            <Select>
-              <option value="nike">Nike</option>
-              <option value="puma">Puma</option>
+            <FormLabel>Product</FormLabel>
+            <Select defaultValue="active">
+              <option value="active">Nike 03</option>
+              <option value="inactive">Puma 47</option>
             </Select>
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Category</FormLabel>
-            <Select>
-              <option value="elec">Electronics</option>
-              <option value="text">Textile</option>
-            </Select>
+            <FormLabel>Quantity</FormLabel>
+            <NumberInput defaultValue={1}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Gross Amount</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="500"
+              placeholder="Customer phone"
+            />
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Price</FormLabel>
+            <FormLabel>Tax 15%</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="75"
+              placeholder="Customer phone"
+            />
+          </FormControl>
+          <FormControl my="0.8rem">
+            <FormLabel>Discount</FormLabel>
             <NumberInput defaultValue={0}>
               <NumberInputField />
               <NumberInputStepper>
@@ -252,22 +269,14 @@ function AddProduct({ onAddClose, isAddOpen }) {
               </NumberInputStepper>
             </NumberInput>
           </FormControl>
-          <FormControl my="0.8rem">
-            <FormLabel>Quantity</FormLabel>
-            <NumberInput defaultValue={1} min={1}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </FormControl>
-          <FormControl my="0.8rem">
-            <FormLabel>Status</FormLabel>
-            <Select defaultValue="active">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </Select>
+          <FormControl>
+            <FormLabel>Net Amount</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="425"
+              placeholder="Customer phone"
+            />
           </FormControl>
         </ModalBody>
 
@@ -282,34 +291,59 @@ function AddProduct({ onAddClose, isAddOpen }) {
   );
 }
 
-function EditProduct({ onEditClose, isEditOpen }) {
+function EditOrder({ onEditClose, isEditOpen }) {
   return (
     <Modal isOpen={isEditOpen} onClose={onEditClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Edit Product</ModalHeader>
+        <ModalHeader>Edit Order</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl isRequired>
-            <FormLabel>Product name</FormLabel>
-            <Input defaultValue="Nike shirt" placeholder="Product name" />
+            <FormLabel>Customer Name</FormLabel>
+            <Input placeholder="Customer name" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel>Customer Phone</FormLabel>
+            <Input type="tel" placeholder="Customer phone" />
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Brand</FormLabel>
-            <Select>
-              <option value="nike">Nike</option>
-              <option value="puma">Puma</option>
+            <FormLabel>Product</FormLabel>
+            <Select defaultValue="active">
+              <option value="active">Nike 03</option>
+              <option value="inactive">Puma 47</option>
             </Select>
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Category</FormLabel>
-            <Select>
-              <option value="elec">Electronics</option>
-              <option value="text">Textile</option>
-            </Select>
+            <FormLabel>Quantity</FormLabel>
+            <NumberInput defaultValue={1}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Gross Amount</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="500"
+              placeholder="Customer phone"
+            />
           </FormControl>
           <FormControl my="0.8rem">
-            <FormLabel>Price</FormLabel>
+            <FormLabel>Tax 15%</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="75"
+              placeholder="Customer phone"
+            />
+          </FormControl>
+          <FormControl my="0.8rem">
+            <FormLabel>Discount</FormLabel>
             <NumberInput defaultValue={0}>
               <NumberInputField />
               <NumberInputStepper>
@@ -318,24 +352,17 @@ function EditProduct({ onEditClose, isEditOpen }) {
               </NumberInputStepper>
             </NumberInput>
           </FormControl>
-          <FormControl my="0.8rem">
-            <FormLabel>Quantity</FormLabel>
-            <NumberInput defaultValue={1} min={1}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </FormControl>
-          <FormControl my="0.8rem">
-            <FormLabel>Status</FormLabel>
-            <Select defaultValue="active">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </Select>
+          <FormControl>
+            <FormLabel>Net Amount</FormLabel>
+            <Input
+              isReadOnly
+              type="tel"
+              value="425"
+              placeholder="Customer phone"
+            />
           </FormControl>
         </ModalBody>
+
 
         <ModalFooter>
           <Button colorScheme="gray" mr={3} onClick={onEditClose}>
@@ -348,12 +375,12 @@ function EditProduct({ onEditClose, isEditOpen }) {
   );
 }
 
-function DeleteProduct({ onDeleteClose, isDeleteOpen }) {
+function DeleteOrder({ onDeleteClose, isDeleteOpen }) {
   return (
     <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Delete Product</ModalHeader>
+        <ModalHeader>Delete Order</ModalHeader>
         <ModalCloseButton />
         <ModalBody>Are you sure you want to delete?</ModalBody>
 
@@ -368,4 +395,4 @@ function DeleteProduct({ onDeleteClose, isDeleteOpen }) {
   );
 }
 
-export default Products;
+export default Orders;
