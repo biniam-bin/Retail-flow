@@ -8,6 +8,7 @@ import Categories from './pages/categories';
 import Producs from './pages/products';
 import Dashboard from './pages/dashboard';
 import Orders from './pages/orders';
+import Report from './pages/report';
 
 function Main() {
   return (
@@ -24,7 +25,7 @@ function Main() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/products" element={<Producs />} />
             <Route path="/orders" element={<Orders/>} />
-            <Route path="/report" element={<Flex>report</Flex>} />
+            <Route path="/report" element={<Report/>} />
             <Route path="/setting" element={<Flex>setting</Flex>} />
           </Routes>
         </Flex>
