@@ -21,7 +21,7 @@ function Sidebar() {
     { text: "Products", icon: <BsBoxFill />, url: "/app/products" },
     { text: "Orders", icon: <MdOutlineAttachMoney />, url: "/app/orders" },
     { text: "Report", icon: <GiNotebook />, url: "/app/report" },
-    { text: "Setting", icon: <BsFillGearFill />, url: "/app/settings" },
+    { text: "Setting", icon: <BsFillGearFill />, url: "/app/setting" },
   ];
   return (
     <Flex
