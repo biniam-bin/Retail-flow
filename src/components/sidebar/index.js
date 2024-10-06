@@ -1,5 +1,7 @@
 import React from "react";
 import { Flex, Heading, Spacer, Link, Text } from "@chakra-ui/react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 // icons
 import { AiFillDashboard } from "react-icons/ai";
@@ -23,7 +25,14 @@ function Sidebar() {
     { text: "Report", icon: <GiNotebook />, url: "/app/report" },
     { text: "Setting", icon: <BsFillGearFill />, url: "/app/setting" },
   ];
+  const [cookies, removeCookie] = useCookies([]);
+  const navigate = useNavigate();
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/login");
+  };
   return (
+
     <Flex
       height="100%"
       width="20%"
@@ -40,7 +49,7 @@ function Sidebar() {
         {links.map((link) => {
           return <MenuLink key={link.url} link={link} />;
         })}
-        <Flex cursor="pointer" padding="0.6rem" color="#eee" my="0.1rem" align="center" onClick={() => alert("logged out")}>
+        <Flex cursor="pointer" padding="0.6rem" color="#eee" my="0.1rem" align="center" onClick={Logout}>
         <RxExit />
           <Text ml="0.5rem">Logout</Text>
         </Flex>
